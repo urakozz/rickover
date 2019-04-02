@@ -21,6 +21,8 @@ $(TRUNCATE_TABLES):
 	go install ./test/rickover-truncate-tables
 
 test-install:
+	go get -u github.com/golang/dep/cmd/dep
+	dep ensure -vendor-only
 	-createuser rickover --superuser --createrole --createdb --inherit
 	-createdb rickover --owner=rickover
 	-createdb rickover_test --owner=rickover
